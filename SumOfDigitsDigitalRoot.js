@@ -11,13 +11,13 @@ Examples
 */
 
 function digital_root(n) {
-  if (n < 10) {
-    return n;
-  }
   let digits = n.toString().split("");
   let realDigits = digits.map(Number);
   let result = 0;
 
+  if (n < 10) {
+    return n;
+  }
   for (i = 0; i < realDigits.length; i++) {
     result += realDigits[i];
   }
