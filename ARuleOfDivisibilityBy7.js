@@ -1,34 +1,38 @@
 function numerator(num) {
-  let splitNumbers = num.toString().split('');
+  let splitNumbers = num.toString().split("");
   let numArray = splitNumbers.map(Number);
   let last = numArray.pop();
-  let remainingNums = Number(numArray.join(''));
-  return remainingNums - (2 * last)
-} //returns 100
+  let remainingNums = Number(numArray.join(""));
+  return remainingNums - 2 * last;
+}
 
 function seven(m) {
-  let bullshit = numerator(m)
+  let lastNumber = numerator(m);
   let counter = 0;
-  let result;
-  if (bullshit > 99) {
-    bullshit = numerator(bullshit)
-    counter++
-  } else {
-   result = bullshit / 7
-   counter++
+  if (lastNumber > 99) {
+    lastNumber = numerator(lastNumber);
+    counter++;
   }
-  return [result, counter];
+  if (lastNumber < 100 && lastNumber % 7 === 0) {
+    counter++;
+    return [lastNumber, counter];
+  }
+  if (lastNumber < 100 && lastNumber % 7 !== 0) {
+    counter++;
+    return [lastNumber, counter];
+  }
 }
 
 console.log(seven(1021));
 
-describe("Seven",function() {
-  it("Basic tests ",function() {
-    Test.assertSimilar(seven(1021), [10, 2])
-    Test.assertSimilar(seven(1603), [7, 2])
-    Test.assertSimilar(seven(371), [35, 1])
-    Test.assertSimilar(seven(483), [42, 1])
-})})
+describe("Seven", function () {
+  it("Basic tests ", function () {
+    Test.assertSimilar(seven(1021), [10, 2]);
+    Test.assertSimilar(seven(1603), [7, 2]);
+    Test.assertSimilar(seven(371), [35, 1]);
+    Test.assertSimilar(seven(483), [42, 1]);
+  });
+});
 
 /*The original number is divisible by 7 if and only if the last number obtained using this procedure is divisible by 7.
 
@@ -52,4 +56,4 @@ Return on the stack number-of-steps, last-number-m-with-at-most-2-digits
 Examples:
 seven(371) should return [35, 1]
 seven(1603) should return [7, 2]
-seven(477557101) should return [28, 7]*/ 
+seven(477557101) should return [28, 7]*/
